@@ -5,18 +5,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.NavHost
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.paul.composemoviesapp.CustomeComposable.CustomBottomNavigation
 import com.paul.composemoviesapp.ui.theme.ComposeMoviesAppTheme
+import com.paul.composemoviesapp.viewmodels.MainViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -42,29 +38,27 @@ class MainActivity : ComponentActivity() {
             ComposeMoviesAppTheme {
 
 
-
-
-
                 Surface(color = MaterialTheme.colors.background) {
 
-                    Scaffold (bottomBar = {
+                    val navController = rememberNavController()
+                    val viewModel: MainViewModel = viewModel()
+
+                    Scaffold(bottomBar = {
                         CustomBottomNavigation(
                             selectedRoute = currentScreen.value.route,
-                        ) {
+                            navController = navController,
+                        ){
+
                             currentScreen.value = it
                         }
-
-                    }){
-
+                    }) {
+                        ScreenNavigator(navController, viewModel)
                     }
 
 
-
+                }
             }
         }
     }
-    }
-
-
-
 }
+

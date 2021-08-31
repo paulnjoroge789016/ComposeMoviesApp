@@ -1,30 +1,33 @@
 package com.paul.composemoviesapp
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.paul.composemoviesapp.viewmodels.MainViewModel
 
 
 @Composable
-fun ScreenNavigator() {
+fun ScreenNavigator(navController: NavController, viewModel: MainViewModel) {
 
-    val navController = rememberNavController()
+
 
 
     NavHost(
-        navController = navController,
-        startDestination = Screen.NewReleases.route,
+        navController  = navController as NavHostController,
+        startDestination = Screen.Trending.route,
     ) {
 
         composable(Screen.NewReleases.route) {
-            ScreenNewReleases(navController = navController)
+            ScreenNewReleases(mainViewModel = viewModel)
         }
         composable(Screen.Popular.route) {
-            ScreenPopular(navController = navController)
+            ScreenPopular(mainViewModel = viewModel)
         }
         composable(Screen.Trending.route) {
-            ScreenTrending(navController = navController)
+            ScreenTrending(mainViewModel = viewModel)
         }
 
     }
