@@ -13,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.paul.composemoviesapp.CustomeComposable.CustomBottomNavigation
 import com.paul.composemoviesapp.ui.theme.ComposeMoviesAppTheme
 
@@ -47,7 +49,7 @@ class MainActivity : ComponentActivity() {
 
                     Scaffold (bottomBar = {
                         CustomBottomNavigation(
-                            selectedRoute = currentScreen.value.route
+                            selectedRoute = currentScreen.value.route,
                         ) {
                             currentScreen.value = it
                         }
@@ -60,5 +62,9 @@ class MainActivity : ComponentActivity() {
 
             }
         }
-    }}
+    }
+    }
+
+
+
 }
