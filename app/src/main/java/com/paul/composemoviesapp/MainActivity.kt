@@ -10,7 +10,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
-import com.paul.composemoviesapp.CustomeComposable.CustomBottomNavigation
+import com.paul.composemoviesapp.ui.bottom_navigation.BottomNavigation
+import com.paul.composemoviesapp.ui.navigation.ScreenNavigator
 import com.paul.composemoviesapp.ui.theme.ComposeMoviesAppTheme
 import com.paul.composemoviesapp.viewmodels.MainViewModel
 
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     val viewModel: MainViewModel = viewModel()
 
                     Scaffold(bottomBar = {
-                        CustomBottomNavigation(
+                        BottomNavigation(
                             selectedRoute = currentScreen.value.route,
                             navController = navController,
                         ){
