@@ -18,12 +18,12 @@ import com.paul.composemoviesapp.ui.theme.ComposeMoviesAppTheme
 
 class MainActivity : ComponentActivity() {
 
-    private val currentRoute = mutableStateOf(Screen.NewReleases.route)
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
 
             window.statusBarColor = MaterialTheme.colors.background.toArgb()
             window.navigationBarColor = MaterialTheme.colors.background.toArgb()
@@ -41,13 +41,21 @@ class MainActivity : ComponentActivity() {
 
 
 
+
+
                 Surface(color = MaterialTheme.colors.background) {
 
-                    CustomBottomNavigation(
-                        selectedRoute = currentRoute.value
-                    ) {
-                        currentScreen.value = it
+                    Scaffold (bottomBar = {
+                        CustomBottomNavigation(
+                            selectedRoute = currentScreen.value.route
+                        ) {
+                            currentScreen.value = it
+                        }
+
+                    }){
+
                     }
+
 
 
             }
