@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -17,12 +18,14 @@ import androidx.compose.ui.unit.dp
 import com.paul.composemoviesapp.Screen
 
 
-@Preview
+
 @Composable
-fun CustomBottomNavigation() {
+fun CustomBottomNavigation(
+    selectedRoute: String,
+    onItemSelected: (Screen) -> Unit
+) {
 
 
-    val selectedRoute = Screen.NewReleases.route
 
     val items = listOf<Screen>(
         Screen.NewReleases,
@@ -40,7 +43,8 @@ fun CustomBottomNavigation() {
         modifier = Modifier
             .fillMaxWidth()
             .clip(navShape)
-            .background(MaterialTheme.colors.surface),
+            .background(MaterialTheme.colors.surface)
+            .padding(vertical = 22.dp),
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     )
@@ -55,7 +59,12 @@ fun CustomBottomNavigation() {
                         else
                             MaterialTheme.colors.onSurface.copy(alpha = 0.7f)
 
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                if(!isSelected){
+                    onItemSelected(it)
+                }
+
+            }) {
                 Icon(
                     imageVector =  it.icon,
                     contentDescription = null,
