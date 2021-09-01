@@ -24,46 +24,48 @@ fun MovieDetails() {
 @Composable
 fun MovieHeader() {
 
-    Column (
+    Column(
         Modifier
             .padding(all = 0.dp)
             .height(200.dp)
             .fillMaxWidth(),
 
 
+        ) {
 
 
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
 
-    ) {
+            contentAlignment = Alignment.Center
+        ) {
 
-
-
-        Card(
-            elevation = 4.dp,
-
-        ){
             Image(
                 painter = painterResource(R.drawable.header),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .fillMaxHeight()
 
             )
 
-            Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
+
                 Image(
                     painter = painterResource(R.drawable.youtube),
                     contentDescription = null,
                     modifier = Modifier
                         .width(50.dp)
-                        .height(50.dp)
-                    ,
+                        .height(50.dp),
+
 
                     )
-            }
+
 
         }
 
     }
+
+
 }
